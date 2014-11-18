@@ -1,0 +1,13 @@
+<h1>Test#index</h1>
+<p>Find me in app/views/test/index.html.erb</p>
+<script type="text/javascript">
+  var dispatcher = new WebSocketRails('localhost:3000/websocket');
+  dispatcher.on_open = function(data) {
+    console.log('Connection has been established: ', data);
+    // You can trigger new server events inside this callback if you wish.
+    dispatcher.trigger('test_event', { a : 1});
+  }
+  dispatcher.bind('test_event', function(data) {
+    console.log(data); // would output 'this is a message'
+  });
+</script>
